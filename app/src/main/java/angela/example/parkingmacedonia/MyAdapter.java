@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,14 +17,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     String data1[], data2[];
     int data3[];
+    int img[];
     Context context;
 
 
-    public MyAdapter(Context ct, String nm[], String sc[], int pl[]){
+    public MyAdapter(Context ct, String nm[], String sc[], int pl[], int images[]){
         context=ct;
         data1=nm;
         data2=sc;
         data3=pl;
+        img=images;
     }
 
 
@@ -40,7 +43,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.text1.setText(data1[position]);
-        holder.text2.setText(data2[position]);
+        holder.image.setImageResource(img[position]);
+        //holder.text2.setText(Integer.toString(img[position]));
+
         holder.text3.setText(Integer.toString(data3[position]));
 
         holder.button.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +53,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             public void onClick(View v) {
                 Intent intent = new Intent (context, ReservationForm.class);
                 intent.putExtra("name", data1[position]);
-                intent.putExtra("parking_lots", data3[position]);
 
                 context.startActivity(intent);
 
@@ -65,6 +69,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView text1, text2, text3;
+        ImageView image;
         Button button;
 
 
@@ -72,7 +77,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             super(itemView);
 
             text1 = itemView.findViewById(R.id.name);
-            text2 = itemView.findViewById(R.id.shortcut);
+            image = itemView.findViewById(R.id.shortcut);
             text3 = itemView.findViewById(R.id.parking_lots);
             button = itemView.findViewById(R.id.button);
 

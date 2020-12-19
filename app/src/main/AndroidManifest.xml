@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ParkingMacedonia">
-        <activity android:name=".ReservationConfirmation"></activity>
+        <activity android:name=".ReservationConfirmation" />
         <activity android:name=".ParkingPlaces" />
         <activity
             android:name=".ReservationForm"

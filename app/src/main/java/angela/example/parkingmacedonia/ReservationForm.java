@@ -19,14 +19,9 @@ public class ReservationForm extends AppCompatActivity {
 
     TextView date;
     DatePickerDialog.OnDateSetListener onDateSetListener;
-
     Button reserve;
-
     TextView cityName;
-
     String name;
-    int parknum;
-
     int year, month, day;
 
     @Override
@@ -72,7 +67,7 @@ public class ReservationForm extends AppCompatActivity {
                 intent.putExtra("month", month);
                 intent.putExtra("year", year);
                 intent.putExtra("cityName", name);
-                intent.putExtra("parkingLots", parknum);
+
                 startActivity(intent);
             }
         });
@@ -90,10 +85,10 @@ public class ReservationForm extends AppCompatActivity {
 
     private void getData ()
     {
-        if (getIntent().hasExtra("name")) // && getIntent().hasExtra("parking_lots"))
+        if (getIntent().hasExtra("name"))
         {
             name = getIntent().getStringExtra("name");
-            parknum = getIntent().getIntExtra("parking_lots", 1);
+
         }
         else {
             Toast.makeText(this, "No data", Toast.LENGTH_SHORT).show();

@@ -57,9 +57,9 @@ public class RegisterActivity extends AppCompatActivity {
                     customerModel = new CustomerModel("Name", "Surname", "Email", "Username", "Password", 0, "Gender");
                 }
 
-                Database database = new Database(RegisterActivity.this);
+                Database database = new Database(RegisterActivity.this, null, null, 2);
 
-                boolean success = database.addOne(customerModel);
+                database.addNewUser(customerModel);
 
                 //Toast.makeText(RegisterActivity.this, "Success = " + success, Toast.LENGTH_SHORT).show();
 

@@ -12,6 +12,8 @@ public class Cities extends AppCompatActivity {
     RecyclerView recyclerView;
     String nm[],  sc[];
     int pl[];
+    int images[]; //{R.drawable.sk, R.drawable.oh, R.drawable.bt, R.drawable.te, R.drawable.su};
+    Database database;
 
 
     @Override
@@ -21,12 +23,16 @@ public class Cities extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
 
-        nm = getResources().getStringArray(R.array.cities_names);
-        sc = getResources().getStringArray(R.array.cities_shortcuts);
-        pl = getResources().getIntArray(R.array.parking_lots);
+        database = new Database(this, null, null, 2);
+
+        nm = database.getCities();
+        sc = database.getShortcuts();
+        pl = database.getParkingLots();
+        images = database.getCityImages();
 
 
-        MyAdapter myAdapter = new MyAdapter(Cities.this, nm, sc, pl);
+
+        MyAdapter myAdapter = new MyAdapter(Cities.this, nm, sc, pl, images);
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

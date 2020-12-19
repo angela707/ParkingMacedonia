@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     EditText username, password;
     Button login, register;
     Database database;
+    ImageView logo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +26,9 @@ public class MainActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         login = findViewById(R.id.loginbutton);
         register = findViewById(R.id.registerbutton);
-        database = new Database(this);
+        logo = findViewById(R.id.logo);
+
+        database = new Database(this, null, null, 2);
 
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                     else{
-                        Toast.makeText(MainActivity.this, "Invalid username or passwordema", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -62,4 +66,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
 }

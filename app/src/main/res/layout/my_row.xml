@@ -41,12 +41,15 @@
                 app:layout_constraintStart_toEndOf="@+id/text1"
                 app:layout_constraintTop_toTopOf="@+id/text1" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/shortcut"
                 android:layout_width="77dp"
                 android:layout_height="77dp"
-                android:text="Shortcut"
-                android:textSize="35dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+                <!--android:text="Shortcut"
+                android:textSize="10dp"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:gravity="center"
@@ -56,9 +59,7 @@
                 android:paddingTop="1dp"
                 android:background="@drawable/rounded_corner"
 
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                -->
 
             <TextView
                 android:id="@+id/name"
