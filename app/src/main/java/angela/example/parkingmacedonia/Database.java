@@ -426,23 +426,59 @@ public class Database extends SQLiteOpenHelper {
 
     }
 
-    public float[] getCoordinates(String parkingName) {
+
+    public String [] getLatitude(String parkingName) {
+
         try{
             createDatabase();
         } catch (IOException e){
             e.printStackTrace();
         }
 
+
         SQLiteDatabase mydb = this.getWritableDatabase();
         Cursor cursor = mydb.rawQuery("Select * from PARKINGS_TABLE where PARKING_NAME =?", new String [] {parkingName});
 
-        float[] coordinates = new float[2];
+        int count = cursor.getCount();
 
-        coordinates[0] = cursor.getFloat(4);
-        coordinates[1] = cursor.getFloat(5);
+        String [] latitude = new String[count];
+
+        int i=0;
+        while (cursor.moveToNext()){
+            latitude[i] = cursor.getString(4);
+            i++;
+        }
+
 
         cursor.close();
         mydb.close();
-        return coordinates;
+        return latitude;
+    }
+
+    public String [] getLongitude(String parkingName) {
+        try{
+            createDatabase();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+
+        SQLiteDatabase mydb = this.getWritableDatabase();
+        Cursor cursor = mydb.rawQuery("Select * from PARKINGS_TABLE where PARKING_NAME =?", new String [] {parkingName});
+
+        int count = cursor.getCount();
+
+        String [] longitude = new String[count];
+
+        int i=0;
+        while (cursor.moveToNext()){
+            longitude[i] = cursor.getString(5);
+            i++;
+        }
+
+
+        cursor.close();
+        mydb.close();
+        return longitude;
     }
 }
