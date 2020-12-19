@@ -8,21 +8,27 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
 
-public class ReservationForm extends AppCompatActivity {
+public class ReservationForm extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     TextView date;
     DatePickerDialog.OnDateSetListener onDateSetListener;
     Button reserve;
     TextView cityName;
     String name;
+    String fullDate;
+    String time_slot;
     int year, month, day;
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +37,14 @@ public class ReservationForm extends AppCompatActivity {
 
         date = findViewById(R.id.date);
         reserve = findViewById(R.id.reserve);
+        spinner = findViewById(R.id.spinner);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.spinner_items, android.R.layout.simple_spinner_item);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(ReservationForm.this);
+
 
         date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,29 +68,40 @@ public class ReservationForm extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month = month+1;
-                String fullDate = dayOfMonth + "/" + month + "/" + year;
+                fullDate = dayOfMonth + "/" + month + "/" + year;
                 date.setText(fullDate);
             }
         };
 
-        reserve.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ReservationForm.this, ParkingPlaces.class);
-                intent.putExtra("day", day);
-                intent.putExtra("month", month);
-                intent.putExtra("year", year);
-                intent.putExtra("cityName", name);
-
-                startActivity(intent);
-            }
-        });
 
 
         cityName = findViewById(R.id.cityname);
 
         getData();
         setData();
+
+
+        reserve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String cityN = cityName.getText().toString();
+
+
+                Intent intent = new Intent(ReservationForm.this, ParkingPlaces.class);
+                intent.putExtra("day", day);
+                intent.putExtra("month", month);
+                intent.putExtra("year", year);
+                intent.putExtra("date", fullDate);
+                intent.putExtra("time_slot", time_slot);
+
+                intent.putExtra("cityName", cityN);
+
+                startActivity(intent);
+            }
+        });
+
+
 
 
 
@@ -98,5 +123,17 @@ public class ReservationForm extends AppCompatActivity {
     private void setData ()
     {
         cityName.setText(name);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        time_slot = parent.getSelectedItem().toString();
+        // Toast.makeText(this, parent.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

@@ -21,6 +21,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     Context context;
 
 
+
     public MyAdapter(Context ct, String nm[], String sc[], int pl[], int images[]){
         context=ct;
         data1=nm;
