@@ -28,6 +28,11 @@ public class Database extends SQLiteOpenHelper {
     public static final String PASSWORD = "PASSWORD";
     public static final String AGE = "AGE";
     public static final String GENDER = "GENDER";
+    public static final String CITY_NAME = "CITY_NAME";
+    public static final String PARKING_NAME = "PARKING_NAME";
+    public static final String DATE = "DATE";
+    public static final String TIMESLOT = "TIMESLOT";
+    public static final String RESERVATION_TABLE = "RESERVATION_TABLE";
 
     public static final String DB_NAME = "database.db";
     public static final int DB_VERSION = 2;
@@ -256,7 +261,7 @@ public class Database extends SQLiteOpenHelper {
         return shortcuts;
     }
 
-    public int[] getParkingLots() {
+    public int[] getNumParkingLots() {
         try{
             createDatabase();
         } catch (IOException e){
@@ -306,5 +311,138 @@ public class Database extends SQLiteOpenHelper {
         cursor.close();
         mydb.close();
         return images;
+    }
+
+    public String[] getParkingLotsNames(String cityName) {
+        try{
+            createDatabase();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+
+        SQLiteDatabase mydb = this.getWritableDatabase();
+        Cursor cursor = mydb.rawQuery("Select * from PARKINGS_TABLE where CITY_NAME =?", new String [] {cityName});
+
+        int count = cursor.getCount();
+
+        String [] parking_lot_names = new String[count];
+
+        int i=0;
+        while (cursor.moveToNext()){
+            parking_lot_names[i] = cursor.getString(1);
+            i++;
+        }
+
+        cursor.close();
+        mydb.close();
+        return parking_lot_names;
+    }
+
+    public int[] getNumParkingSpots(String cityName) {
+        try{
+            createDatabase();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+
+        SQLiteDatabase mydb = this.getWritableDatabase();
+        Cursor cursor = mydb.rawQuery("Select * from PARKINGS_TABLE where CITY_NAME =?", new String [] {cityName});
+
+        int count = cursor.getCount();
+
+        int num_parking_spots[]= new int[count];
+
+        int i=0;
+        while (cursor.moveToNext()){
+            num_parking_spots[i] = cursor.getInt(3);
+            i++;
+        }
+
+        cursor.close();
+        mydb.close();
+        return num_parking_spots;
+    }
+
+
+    public int[] getReservedSpots(String name, String date, String time_slot, String [] parking_lots) {
+
+        try{
+            createDatabase();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        SQLiteDatabase mydb = this.getWritableDatabase();
+
+        int takenSpots[] = new int[parking_lots.length];
+
+        int i=0;
+
+        String parking_name;
+
+        for (i=0; i<parking_lots.length; i++){
+
+            parking_name = parking_lots[i];
+
+            Cursor cursor = mydb.rawQuery("Select * from RESERVATION_TABLE where CITY_NAME =? and PARKING_NAME=? and DATE=? and TIMESLOT=? ", new String [] {name, parking_name, date, time_slot});
+
+            takenSpots[i] = cursor.getCount();
+
+            cursor.close();
+        }
+
+        mydb.close();
+        return takenSpots;
+    }
+
+    public boolean addReservation(String userName, String cityName, String parkingLotName, String date, String time_slot) {
+
+        try{
+            createDatabase();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(USERNAME, userName);
+        cv.put(CITY_NAME, cityName);
+        cv.put(PARKING_NAME, parkingLotName);
+        cv.put(DATE, date);
+        cv.put(TIMESLOT, time_slot);
+
+        long insert = db.insert(RESERVATION_TABLE, null, cv);
+        if (insert == -1)
+            return false;
+        else
+            return true;
+
+
+
+
+
+    }
+
+    public float[] getCoordinates(String parkingName) {
+        try{
+            createDatabase();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        SQLiteDatabase mydb = this.getWritableDatabase();
+        Cursor cursor = mydb.rawQuery("Select * from PARKINGS_TABLE where PARKING_NAME =?", new String [] {parkingName});
+
+        float[] coordinates = new float[2];
+
+        coordinates[0] = cursor.getFloat(4);
+        coordinates[1] = cursor.getFloat(5);
+
+        cursor.close();
+        mydb.close();
+        return coordinates;
     }
 }

@@ -29,6 +29,7 @@ public class ReservationForm extends AppCompatActivity implements AdapterView.On
     String time_slot;
     int year, month, day;
     Spinner spinner;
+    String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +97,7 @@ public class ReservationForm extends AppCompatActivity implements AdapterView.On
                 intent.putExtra("time_slot", time_slot);
 
                 intent.putExtra("cityName", cityN);
+                intent.putExtra("userName", userName);
 
                 startActivity(intent);
             }
@@ -110,9 +112,10 @@ public class ReservationForm extends AppCompatActivity implements AdapterView.On
 
     private void getData ()
     {
-        if (getIntent().hasExtra("name"))
+        if (getIntent().hasExtra("name") && getIntent().hasExtra("userName"))
         {
             name = getIntent().getStringExtra("name");
+            userName = getIntent().getStringExtra("userName");
 
         }
         else {

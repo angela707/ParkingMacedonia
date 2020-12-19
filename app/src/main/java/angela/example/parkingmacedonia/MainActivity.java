@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
                     if (database.isLogInValid(usernameVal, passVal)) {
                         Toast.makeText(MainActivity.this, "Login Succesfull", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(MainActivity.this, Cities.class);
+                        intent.putExtra("userName", usernameVal);
                         startActivity(intent);
                     }
                     else{

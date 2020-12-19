@@ -38,6 +38,7 @@
                 android:layout_height="33dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
+                android:textColor="@android:color/black"
                 android:text="Parking Name"
                 android:textSize="20dp"
                 app:layout_constraintStart_toEndOf="@+id/imageView"

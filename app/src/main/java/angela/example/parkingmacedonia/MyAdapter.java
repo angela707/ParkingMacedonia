@@ -19,15 +19,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     int data3[];
     int img[];
     Context context;
+    String userName;
 
 
 
-    public MyAdapter(Context ct, String nm[], String sc[], int pl[], int images[]){
+    public MyAdapter(Context ct, String nm[], String sc[], int pl[], int images[], String user){
         context=ct;
         data1=nm;
         data2=sc;
         data3=pl;
         img=images;
+        userName = user;
     }
 
 
@@ -54,6 +56,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             public void onClick(View v) {
                 Intent intent = new Intent (context, ReservationForm.class);
                 intent.putExtra("name", data1[position]);
+                intent.putExtra("userName", userName);
 
                 context.startActivity(intent);
 
