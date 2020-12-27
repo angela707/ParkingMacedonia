@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FEFEFE"
     tools:context=".ReservationConfirmation">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -47,13 +48,14 @@
 
     <TextView
         android:id="@+id/parkingName"
-        android:layout_width="wrap_content"
+        android:layout_width="253dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/success"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_toRightOf="@+id/parkHero"
         android:text="Parking Name"
+        android:gravity="center"
         android:textColor="#1C74BA"
         android:textSize="25dp"
         app:layout_constraintStart_toStartOf="@+id/success"
@@ -64,17 +66,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/parkingName"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="48dp"
         android:layout_toRightOf="@+id/parkHero"
         android:background="@android:color/white"
         android:text="click here to see location"
-        android:textColor="#1C74BA"
 
+        android:textColor="#1C74BA"
         android:textSize="20dp"
         android:textStyle="italic"
         app:backgroundTint="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@+id/parkingName"
-        tools:layout_editor_absoluteX="347dp" />
+        app:layout_constraintStart_toStartOf="@+id/success"
+        app:layout_constraintTop_toBottomOf="@+id/parkingName" />
 
     <TextView
         android:id="@+id/parkHero"
