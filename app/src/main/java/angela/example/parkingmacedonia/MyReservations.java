@@ -23,7 +23,7 @@ public class MyReservations extends AppCompatActivity {
         myRecyclerView = findViewById(R.id.recyclerViewReservations);
 
         getData();
-        Toast.makeText(this, "PREVZEDE INTENT", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, userName, Toast.LENGTH_SHORT).show();
 
         /*database = new Database(this, null, null, 2);
         parking_lots_names = database.getParkingLotsNamesForUser(userName);
