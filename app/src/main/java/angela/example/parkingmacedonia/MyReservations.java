@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class MyReservations extends AppCompatActivity {
 
     RecyclerView myRecyclerView;
@@ -26,13 +28,8 @@ public class MyReservations extends AppCompatActivity {
 
         database = new Database(this, null, null, 2);
         parking_lots_names = database.getParkingLotsNamesForUser(userName);
-
-
-
         reservation_dates = database.getReservationDatesForUser(userName);
-
         reservations_time_slots = database.getReservationTimeSlotsForUser(userName);
-
         citiesForUser = database.getCitiesForUser(userName);
 
 
@@ -44,6 +41,8 @@ public class MyReservations extends AppCompatActivity {
 
 
     }
+
+
 
 
     private void getData ()

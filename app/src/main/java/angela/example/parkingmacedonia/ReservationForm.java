@@ -163,7 +163,7 @@ public class ReservationForm extends AppCompatActivity implements AdapterView.On
             Intent intent = new Intent (this, MyReservations.class);
             intent.putExtra("userName", userName);
             startActivity(intent);
-            Toast.makeText(this, "KLIKNA NA MYRESERVATIONS", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "KLIKNA NA MYRESERVATIONS", Toast.LENGTH_SHORT).show();
         }
         return true;
 

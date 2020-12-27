@@ -19,6 +19,7 @@ public class MyParkingAdapter extends RecyclerView.Adapter<MyParkingAdapter.MyPa
     int parking_lots_spots [], parking_spots_reserved[];
     String cityName, date, time_slot, userName;
     Context context;
+    Database database;
 
 
 
@@ -54,9 +55,27 @@ public class MyParkingAdapter extends RecyclerView.Adapter<MyParkingAdapter.MyPa
         holder.freeSpots.setText(Integer.toString(free));
         holder.takenSpots.setText(Integer.toString(parking_spots_reserved[position]));
 
+        int currentUserReservations;
+        database = new Database(context, null, null, 2);
+
+        currentUserReservations = database.getNumUserReservations(userName);
+
+        if (free <= 0){
+            holder.buttonReserve.setEnabled(false);
+        }
+
+        if (currentUserReservations >=3){
+            holder.buttonReserve.setEnabled(false);
+        }
+
+
+
+
+
         holder.buttonReserve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
                 String parkingLotName = parking_lots_names[position];
 

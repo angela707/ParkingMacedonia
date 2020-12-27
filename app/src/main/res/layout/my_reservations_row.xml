@@ -18,13 +18,13 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="136dp">
 
 
             <ImageView
                 android:id="@+id/cityReservationsPicture"
-                android:layout_width="77dp"
-                android:layout_height="77dp"
+                android:layout_width="108dp"
+                android:layout_height="102dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -36,6 +36,8 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:text="Parking Name"
+                android:textColor="#1C74BA"
+                android:textSize="20dp"
                 app:layout_constraintStart_toEndOf="@+id/cityReservationsPicture"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,21 +45,41 @@
                 android:id="@+id/dateSlot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="20dp"
                 android:text="Date"
-                app:layout_constraintStart_toEndOf="@+id/cityReservationsPicture"
-                app:layout_constraintTop_toBottomOf="@+id/parkingNameR" />
+                android:textColor="#1C74BA"
+                app:layout_constraintStart_toEndOf="@+id/textView"
+                app:layout_constraintTop_toTopOf="@+id/textView" />
 
             <TextView
                 android:id="@+id/timeSlot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="96dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginStart="16dp"
                 android:text="Time Slot"
-                app:layout_constraintStart_toEndOf="@+id/dateSlot"
-                app:layout_constraintTop_toTopOf="@+id/dateSlot" />
+                android:textColor="#1C74BA"
+                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintTop_toTopOf="@+id/textView4" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Date:"
+                app:layout_constraintStart_toStartOf="@+id/parkingNameR"
+                app:layout_constraintTop_toBottomOf="@+id/parkingNameR" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Time:"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

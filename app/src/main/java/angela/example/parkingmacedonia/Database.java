@@ -582,4 +582,37 @@ public class Database extends SQLiteOpenHelper {
         return cities_for_user;
     }
 
+    public void removeReservation(String user, String city, String parking, String current_date, String current_time_slot) {
+        try{
+            createDatabase();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+
+        SQLiteDatabase mydb = this.getWritableDatabase();
+
+        String query = "DELETE FROM RESERVATION_TABLE WHERE USERNAME = "+user+" AND CITY_NAME = "+ city +" AND PARKING_NAME = "+parking + " AND DATE = "+current_date+" AND TIMESLOT= "+ current_time_slot;
+
+        mydb.execSQL(query);
+        mydb.close();
+
+    }
+
+    public int getNumUserReservations(String userName) {
+        try{
+            createDatabase();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        SQLiteDatabase mydb = this.getWritableDatabase();
+        Cursor cursor = mydb.rawQuery("Select * from RESERVATION_TABLE where USERNAME =?", new String [] {userName});
+
+        int numRes = cursor.getCount();
+
+        cursor.close();
+        mydb.close();
+
+        return numRes;
+    }
 }

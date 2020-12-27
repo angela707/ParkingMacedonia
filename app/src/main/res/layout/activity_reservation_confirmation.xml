@@ -37,11 +37,11 @@
         android:layout_below="@+id/parkHero"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="24dp"
         android:text="Successful Reservation at"
         android:textSize="25dp"
         app:layout_constraintStart_toStartOf="@+id/thank"
-        app:layout_constraintTop_toBottomOf="@+id/parkHero" />
+        app:layout_constraintTop_toBottomOf="@+id/image" />
 
     <TextView
         android:id="@+id/parkingName"
@@ -95,7 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/image"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="92dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/bangers"
         android:gravity="center"
@@ -103,8 +103,8 @@
         android:text="ParkHero"
         android:textColor="#1C74BA"
         android:textSize="60dp"
-        app:layout_constraintStart_toStartOf="@+id/thank"
-        app:layout_constraintTop_toBottomOf="@+id/image" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thank" />
 
     <ImageView
         android:id="@+id/image"
@@ -113,9 +113,9 @@
         android:layout_below="@+id/thank"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="76dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="@+id/thank"
-        app:layout_constraintTop_toBottomOf="@+id/thank"
+        app:layout_constraintTop_toBottomOf="@+id/parkHero"
         app:srcCompat="@drawable/car" />
 
 

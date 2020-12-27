@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,6 +17,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidmads.library.qrgenearator.QRGContents;
+import androidmads.library.qrgenearator.QRGEncoder;
+
 public class ReservationConfirmation extends AppCompatActivity {
 
     TextView parking_name, pomos;
@@ -22,6 +27,7 @@ public class ReservationConfirmation extends AppCompatActivity {
     String parkingName, userName;
     Database database;
     String latitude[], longitude[];
+    ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,8 @@ public class ReservationConfirmation extends AppCompatActivity {
 
         click = findViewById(R.id.clickable);
         parking_name = findViewById(R.id.parkingName);
+        image = findViewById(R.id.image);
+
 
 
         getData();
@@ -49,6 +57,20 @@ public class ReservationConfirmation extends AppCompatActivity {
 
 
         String location = "google.navigation:q="+latitude[0]+","+longitude[0];
+        String locationQR = "geo:"+latitude[0]+","+longitude[0];
+
+        QRGEncoder qrgEncoder = new QRGEncoder(locationQR, null, QRGContents.Type.TEXT, 600);
+        qrgEncoder.setColorBlack(Color.BLACK);
+        qrgEncoder.setColorWhite(Color.WHITE);
+
+        try {
+            Bitmap qrBitmap = qrgEncoder.getBitmap();
+            image.setImageBitmap(qrBitmap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
 
         //pomos.setText(location);
 
@@ -107,7 +129,7 @@ public class ReservationConfirmation extends AppCompatActivity {
             Intent intent = new Intent (this, MyReservations.class);
             intent.putExtra("userName", userName);
             startActivity(intent);
-            Toast.makeText(this, "KLIKNA NA MYRESERVATIONS", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "KLIKNA NA MYRESERVATIONS", Toast.LENGTH_SHORT).show();
         }
         return true;
 

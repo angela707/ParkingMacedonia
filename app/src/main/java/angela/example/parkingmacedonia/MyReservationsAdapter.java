@@ -1,6 +1,8 @@
 package angela.example.parkingmacedonia;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +13,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
+import androidmads.library.qrgenearator.QRGContents;
+import androidmads.library.qrgenearator.QRGEncoder;
+
 public class MyReservationsAdapter extends RecyclerView.Adapter<MyReservationsAdapter.MyReservationsViewHolder> {
 
     String parking_lots_names [], reservation_dates[], reservations_time_slots[], cities_for_user[];
     int reservations_city_images [];
+    //List<Reservation> reservationList;
     String username;
     Context context;
+    Database database;
 
 
-    public MyReservationsAdapter (Context context, String username, String parking_lots_names [], String reservation_dates [],String reservations_time_slots[], String citiesForUser[])
+    public MyReservationsAdapter (Context context, String username,  String parking_lots_names [], String reservation_dates [],String reservations_time_slots[], String citiesForUser[])
     {
         this.context = context;
         this.username = username;
@@ -43,9 +52,31 @@ public class MyReservationsAdapter extends RecyclerView.Adapter<MyReservationsAd
 
     @Override
     public void onBindViewHolder(@NonNull MyReservationsViewHolder holder, int position) {
+
         holder.parkingNameR.setText(parking_lots_names[position]);
         holder.dateSlot.setText(reservation_dates[position]);
         holder.timeSlot.setText(reservations_time_slots[position]);
+
+        database = new Database(context, null, null, 2);
+
+
+
+        String []latitude = database.getLatitude(parking_lots_names[position]);
+        String []longitude = database.getLongitude(parking_lots_names[position]);
+        String locationQR = "geo:"+latitude[0]+","+longitude[0];
+
+        QRGEncoder qrgEncoder = new QRGEncoder(locationQR, null, QRGContents.Type.TEXT, 400);
+        qrgEncoder.setColorBlack(Color.BLACK);
+        qrgEncoder.setColorWhite(Color.WHITE);
+
+        try {
+            Bitmap qrBitmap = qrgEncoder.getBitmap();
+            holder.cityPicture.setImageBitmap(qrBitmap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     @Override
