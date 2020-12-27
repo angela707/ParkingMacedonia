@@ -77,14 +77,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="288dp"
 
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="444dp"
+        android:layout_marginTop="20dp"
         android:text="Time:"
         android:textColor="#1C74BA"
         android:textSize="30dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/text1"
+        app:layout_constraintStart_toStartOf="@+id/cityname"
         app:layout_constraintTop_toBottomOf="@+id/cityname" />
 
     <Spinner
@@ -93,11 +93,10 @@
         android:layout_height="71dp"
         android:layout_below="@+id/text2"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="200dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:textAlignment="center"
-        app:layout_constraintStart_toEndOf="@+id/date"
+        app:layout_constraintStart_toStartOf="@+id/text2"
         app:layout_constraintTop_toBottomOf="@+id/text2" />
 
     <Button
@@ -106,16 +105,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/spinner"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="321dp"
-        android:layout_marginEnd="322dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginStart="288dp"
+        android:layout_marginBottom="44dp"
         android:background="#1C74BA"
         android:text="Reserve"
         app:backgroundTint="#1C74BA"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/cityname" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
