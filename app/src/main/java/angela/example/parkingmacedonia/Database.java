@@ -419,11 +419,6 @@ public class Database extends SQLiteOpenHelper {
             return false;
         else
             return true;
-
-
-
-
-
     }
 
 
@@ -480,5 +475,127 @@ public class Database extends SQLiteOpenHelper {
         cursor.close();
         mydb.close();
         return longitude;
+    }
+
+    public String[] getParkingLotsNamesForUser(String userName) {
+        try{
+            createDatabase();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+
+        SQLiteDatabase mydb = this.getWritableDatabase();
+        Cursor cursor = mydb.rawQuery("Select * from RESERVATIONS_TABLE where USERNAME =?", new String [] {userName});
+
+        int count = cursor.getCount();
+
+        String [] parking_lot_names = new String[count];
+
+        int i=0;
+        while (cursor.moveToNext()){
+            parking_lot_names[i] = cursor.getString(3);
+            i++;
+        }
+
+        cursor.close();
+        mydb.close();
+        return parking_lot_names;
+    }
+
+    public String[] getReservationDatesForUser(String userName) {
+        try{
+            createDatabase();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+
+        SQLiteDatabase mydb = this.getWritableDatabase();
+        Cursor cursor = mydb.rawQuery("Select * from RESERVATIONS_TABLE where USERNAME =?", new String [] {userName});
+
+        int count = cursor.getCount();
+
+        String [] reservation_dates = new String[count];
+
+        int i=0;
+        while (cursor.moveToNext()){
+            reservation_dates[i] = cursor.getString(4);
+            i++;
+        }
+
+        cursor.close();
+        mydb.close();
+        return reservation_dates;
+    }
+
+    public String[] getReservationTimeSlotsForUser(String userName) {
+        try{
+            createDatabase();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+
+        SQLiteDatabase mydb = this.getWritableDatabase();
+        Cursor cursor = mydb.rawQuery("Select * from RESERVATIONS_TABLE where USERNAME =?", new String [] {userName});
+
+        int count = cursor.getCount();
+
+        String [] reservation_time_slots = new String[count];
+
+        int i=0;
+        while (cursor.moveToNext()){
+            reservation_time_slots[i] = cursor.getString(5);
+            i++;
+        }
+
+        cursor.close();
+        mydb.close();
+        return reservation_time_slots;
+    }
+
+
+    public String[] getCitiesForUser(String userName) {
+        try{
+            createDatabase();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+
+        SQLiteDatabase mydb = this.getWritableDatabase();
+        Cursor cursor = mydb.rawQuery("Select * from RESERVATIONS_TABLE where USERNAME =?", new String [] {userName});
+
+        int count = cursor.getCount();
+
+        String [] cities_for_user = new String[count];
+
+        int i=0;
+        while (cursor.moveToNext()){
+            cities_for_user[i] = cursor.getString(2);
+            i++;
+        }
+
+        cursor.close();
+        mydb.close();
+        return cities_for_user;
+    }
+
+    public int getCityImage(String cityName) {
+        try{
+            createDatabase();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+
+        SQLiteDatabase mydb = this.getWritableDatabase();
+        Cursor cursor = mydb.rawQuery("Select * from CITIES_TABLE where NAME =?", new String [] {cityName});
+
+        int cityPicture = cursor.getInt(3);
+        cursor.close();
+        mydb.close();
+        return cityPicture;
     }
 }

@@ -53,7 +53,6 @@ public class ParkingPlaces extends AppCompatActivity {
     }
 
 
-
     private void getData ()
     {
         if (getIntent().hasExtra("cityName") && getIntent().hasExtra("date") && getIntent().hasExtra("time_slot") && getIntent().hasExtra("userName"))

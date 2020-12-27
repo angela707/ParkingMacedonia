@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,17 +17,21 @@ public class MainActivity extends AppCompatActivity {
     Button login, register;
     Database database;
     ImageView logo;
+    TextView proba;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //proba = findViewById(R.id.textView5);
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         login = findViewById(R.id.loginbutton);
         register = findViewById(R.id.registerbutton);
         logo = findViewById(R.id.logo);
+
+        //proba.setText(Integer.toString(R.drawable.oh));
 
         database = new Database(this, null, null, 2);
 
