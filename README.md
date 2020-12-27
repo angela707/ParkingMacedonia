@@ -31,3 +31,8 @@ Once the reservation is completed, the user gets the reservation confirmation pa
 ## My Reservations
 This can be accesed from the toolbar from the Cities Activity, Reservation Form, Parking Places and Reservation confirmation. It shows all the reservations the current user has made, the name of the parking lot, the date and the time, and also the QR code to get the location of the parking lot.
 
+# Installation Guide
+To install this application simply download and install the APK file to your phone. Thank you for using PARKHERO! :)
+
+
+
