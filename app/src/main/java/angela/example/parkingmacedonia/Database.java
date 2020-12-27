@@ -486,7 +486,7 @@ public class Database extends SQLiteOpenHelper {
 
 
         SQLiteDatabase mydb = this.getWritableDatabase();
-        Cursor cursor = mydb.rawQuery("Select * from RESERVATIONS_TABLE where USERNAME =?", new String [] {userName});
+        Cursor cursor = mydb.rawQuery("Select * from RESERVATION_TABLE where USERNAME =?", new String [] {userName});
 
         int count = cursor.getCount();
 
@@ -512,7 +512,7 @@ public class Database extends SQLiteOpenHelper {
 
 
         SQLiteDatabase mydb = this.getWritableDatabase();
-        Cursor cursor = mydb.rawQuery("Select * from RESERVATIONS_TABLE where USERNAME =?", new String [] {userName});
+        Cursor cursor = mydb.rawQuery("Select * from RESERVATION_TABLE where USERNAME =?", new String [] {userName});
 
         int count = cursor.getCount();
 
@@ -538,7 +538,7 @@ public class Database extends SQLiteOpenHelper {
 
 
         SQLiteDatabase mydb = this.getWritableDatabase();
-        Cursor cursor = mydb.rawQuery("Select * from RESERVATIONS_TABLE where USERNAME =?", new String [] {userName});
+        Cursor cursor = mydb.rawQuery("Select * from RESERVATION_TABLE where USERNAME =?", new String [] {userName});
 
         int count = cursor.getCount();
 
@@ -565,7 +565,7 @@ public class Database extends SQLiteOpenHelper {
 
 
         SQLiteDatabase mydb = this.getWritableDatabase();
-        Cursor cursor = mydb.rawQuery("Select * from RESERVATIONS_TABLE where USERNAME =?", new String [] {userName});
+        Cursor cursor = mydb.rawQuery("Select * from RESERVATION_TABLE where USERNAME =?", new String [] {userName});
 
         int count = cursor.getCount();
 
@@ -582,20 +582,4 @@ public class Database extends SQLiteOpenHelper {
         return cities_for_user;
     }
 
-    public int getCityImage(String cityName) {
-        try{
-            createDatabase();
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-
-
-        SQLiteDatabase mydb = this.getWritableDatabase();
-        Cursor cursor = mydb.rawQuery("Select * from CITIES_TABLE where NAME =?", new String [] {cityName});
-
-        int cityPicture = cursor.getInt(3);
-        cursor.close();
-        mydb.close();
-        return cityPicture;
-    }
 }

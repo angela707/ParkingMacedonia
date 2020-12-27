@@ -13,20 +13,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MyReservationsAdapter extends RecyclerView.Adapter<MyReservationsAdapter.MyReservationsViewHolder> {
 
-    String parking_lots_names [], reservation_dates[], reservations_time_slots[];
+    String parking_lots_names [], reservation_dates[], reservations_time_slots[], cities_for_user[];
     int reservations_city_images [];
     String username;
     Context context;
 
 
-    public MyReservationsAdapter (Context context, String username, String parking_lots_names [], String reservation_dates [],String reservations_time_slots[], int reservations_city_images[])
+    public MyReservationsAdapter (Context context, String username, String parking_lots_names [], String reservation_dates [],String reservations_time_slots[], String citiesForUser[])
     {
         this.context = context;
         this.username = username;
         this.parking_lots_names = parking_lots_names;
         this.reservation_dates = reservation_dates;
         this.reservations_time_slots = reservations_time_slots;
-        this.reservations_city_images = reservations_city_images;
+        this.cities_for_user = citiesForUser;
     }
 
 
@@ -46,7 +46,6 @@ public class MyReservationsAdapter extends RecyclerView.Adapter<MyReservationsAd
         holder.parkingNameR.setText(parking_lots_names[position]);
         holder.dateSlot.setText(reservation_dates[position]);
         holder.timeSlot.setText(reservations_time_slots[position]);
-        holder.cityPicture.setImageResource(reservations_city_images[position]);
     }
 
     @Override
