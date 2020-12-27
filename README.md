@@ -1,6 +1,14 @@
 # About PARKHERO
 Welcome to PARKHERO! A simple app to help you find and reserve parking anywhere in Macedonia in just a few clicks! Available only for Android.
 
+
+# Installation Guide
+To install this application simply download the APK file to your phone. After downloading the application on your phone install it by going to your File Manager and clicking on the file name. 
+
+# Usage
+Once you've installed the app to your it's time to launch it. If you already have an account, go ahead and log in, but if you're using this app for the first time, you need to register. After successfully loging in, select the city where you wish to reserve a parking spot. After selecting the city, choose a date and time. Once you choose your date and time, you will be given a list of parking in the city you've selected. If the reserve button is disabled, that might be due to the fact there are no more available spots in the parking lot you wish to reserve. But if all the reserve buttons are disabled, that means that you've reached the maximum number of reservations. Once the reservation is complete, you will be given a QR code, which you can scan to see the location of the selected parking lot, or you can simply click on the button to navigate to the parking lot.
+Thank you for using PARKHERO! :)
+
 # Contents
 1. Main Activity - or LogIn Activity
 2. Register Acticity
@@ -31,8 +39,6 @@ Once the reservation is completed, the user gets the reservation confirmation pa
 ## My Reservations
 This can be accesed from the toolbar from the Cities Activity, Reservation Form, Parking Places and Reservation confirmation. It shows all the reservations the current user has made, the name of the parking lot, the date and the time, and also the QR code to get the location of the parking lot.
 
-# Installation Guide
-To install this application simply download and install the APK file to your phone. Thank you for using PARKHERO! :)
 
 
 
