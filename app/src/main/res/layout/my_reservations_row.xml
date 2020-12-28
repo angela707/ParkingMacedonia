@@ -82,6 +82,18 @@
                 app:layout_constraintStart_toStartOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+            <Button
+                android:id="@+id/navigationButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="56dp"
+                android:layout_marginTop="4dp"
+                android:background="#1C74BA"
+                android:text="Navigate"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toEndOf="@+id/timeSlot"
+                app:layout_constraintTop_toTopOf="@+id/dateSlot" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

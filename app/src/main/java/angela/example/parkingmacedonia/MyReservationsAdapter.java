@@ -1,14 +1,18 @@
 package angela.example.parkingmacedonia;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.net.Uri;
+import android.content.pm.PackageManager;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -64,6 +68,7 @@ public class MyReservationsAdapter extends RecyclerView.Adapter<MyReservationsAd
         String []latitude = database.getLatitude(parking_lots_names[position]);
         String []longitude = database.getLongitude(parking_lots_names[position]);
         String locationQR = "geo:"+latitude[0]+","+longitude[0];
+        String locationNavigation = "google.navigation:q="+latitude[0]+","+longitude[0];
 
         QRGEncoder qrgEncoder = new QRGEncoder(locationQR, null, QRGContents.Type.TEXT, 400);
         qrgEncoder.setColorBlack(Color.BLACK);
@@ -75,6 +80,20 @@ public class MyReservationsAdapter extends RecyclerView.Adapter<MyReservationsAd
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
+        holder.navigation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent nav = new Intent (Intent.ACTION_VIEW, Uri.parse(locationNavigation));
+
+                nav.setPackage("com.google.android.apps.maps");
+
+                if (nav.resolveActivity(context.getPackageManager()) != null){
+                    context.startActivity(nav);
+                }
+            }
+        });
 
 
     }
@@ -89,6 +108,7 @@ public class MyReservationsAdapter extends RecyclerView.Adapter<MyReservationsAd
 
         TextView parkingNameR, dateSlot, timeSlot;
         ImageView cityPicture;
+        Button navigation;
 
         public MyReservationsViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -96,6 +116,7 @@ public class MyReservationsAdapter extends RecyclerView.Adapter<MyReservationsAd
             dateSlot = itemView.findViewById(R.id.dateSlot);
             timeSlot = itemView.findViewById(R.id.timeSlot);
             cityPicture = itemView.findViewById(R.id.cityReservationsPicture);
+            navigation = itemView.findViewById(R.id.navigationButton);
 
         }
     }
